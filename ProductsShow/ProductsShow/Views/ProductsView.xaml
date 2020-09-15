@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="ProductsShow.Views.ProductsView">
+
+    <Grid>
+
+
+        <BoxView BackgroundColor="{Binding ProductColor}"  Margin="2,0" 
+                                 VerticalOptions="End"  TranslationY="-60"
+                                
+                                 HorizontalOptions="FillAndExpand"
+                                 HeightRequest="400" CornerRadius="30,30,30,30"/>
+
+
+        <skia:SKCanvasView 
+            x:Name="CardBackground"
+            HorizontalOptions="Fill"
+            PaintSurface="CardBackground_PaintSurface"
+            VerticalOptions="Fill" />
+
+
+   
+
+
+
+        <Image x:Name="ProductImage"  Source="{Binding Image}" Grid.Row="0"  TranslationY="100"  WidthRequest="380"
+                               VerticalOptions="Start"/>
+
+        <StackLayout    VerticalOptions="Start" HorizontalOptions="Start"  Margin="20,540,0,0"  >
+             
+
+            <Label x:Name="learnMoreButton" Text="Learn more here ⟶"   FontSize="25" Margin="0,70,0,0" TextColor="Yellow" >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="LearnMore_TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="Available"  TextColor="White"  FontAttributes="Italic" Margin="0,15,0,0" />
+
+            
+        </StackLayout>
+        
+
+            <Grid x:Name="productDetail" RowDefinitions="500,*"  InputTransparent="True" >
+            <BoxView x:Name="barreDeSeparation" BackgroundColor="#EAEAEA" HeightRequest="1" Opacity="0"  Grid.Row="1" VerticalOptions="Start" Margin="40,0,40,0"  />
+            <Image x:Name="ProductLogo" Source="pngegg.png" HeightRequest="150"  Opacity="0"  Grid.Row="1" VerticalOptions="Start" HorizontalOptions="End" Margin="0,0,40,0" TranslationY="-170"/>   
+                <ScrollView
+                x:Name="ProductDetailsScroll"
+                Grid.Row="1"
+                Margin="40,20,40,0"
+                Opacity="0"
+                Orientation="Vertical">
+                    <StackLayout>
+                        <Label   Text="{Binding Informations}" />
+                        <BoxView
+                        Margin="0,20,0,0"
+                        HeightRequest="1"
+                        VerticalOptions="Start"
+                        Color="#EAEAEA" />
+                        <Label 
+                         
+                        Text="Autre pc"
+                         FontSize="30" FontAttributes="Bold" TextColor="Wheat" />
+                        <FlexLayout
+                        BindableLayout.ItemsSource="{Binding Posters}"
+                        HorizontalOptions="Fill"
+                        JustifyContent="SpaceEvenly"
+                        Wrap="Wrap">
+
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <pancake:PancakeView CornerRadius="7" HeightRequest="150" BackgroundColor="Yellow" WidthRequest="150" Margin="0,10">
+                                        <Image Source="{Binding}" Aspect="Fill"  />
+                                    </pancake:PancakeView>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+
+                        </FlexLayout>
+
+                    </StackLayout>
+
+                </ScrollView>
+            </Grid>
+        
+   
+    </Grid> 
+    
+</ContentView>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:cards ="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:view="clr-namespace:ProductsShow.Views"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             x:Class="ProductsShow.Views.MainPage" NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        
+
+        <cards:CardsView x:Name="mainCardsView"  IsCyclical="True" ItemsSource="{Binding Products}">
+            <cards:CardsView.ItemTemplate>
+                <DataTemplate>
+                    <view:ProductsView Margin="0,0,0,-100"/>
+                </DataTemplate>
+            </cards:CardsView.ItemTemplate>
+        </cards:CardsView>
+        <StackLayout BackgroundColor="Red" HeightRequest="{Binding MyProperty}" VerticalOptions="Start" >
+            
+        </StackLayout>
+        <Label x:Name="headersTitle" Text="Products" HorizontalOptions="Center" TextColor="Black" VerticalOptions="Start" 
+               Margin="0,15" Opacity=".8" FontAttributes="Bold"  FontSize="20"/>
+
+        <ImageButton x:Name="ButtonRetour" Source="retourbut.png" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent"
+                     Opacity=".8" Margin="20,15,0,15" HeightRequest="30" WidthRequest="30" Clicked="BackButton_Tapped" />
+
+        <!--<Image Source="pngegg" VerticalOptions="End" HorizontalOptions="End" HeightRequest="100"/>-->
+    </Grid>
+</ContentPage>
